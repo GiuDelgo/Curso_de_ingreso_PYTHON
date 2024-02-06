@@ -5,8 +5,9 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Giuliana 
+apellido: Delgobbo
+tutor: Alejandro
 ---
 Ejercicio: entrada_salida_02
 ---
@@ -27,10 +28,13 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        # descripcion_producto = "Coca-cola" # Asignacion a una variable. El dato se almacena dentro de la memoria RAM.
+
+        descripcion_producto = prompt ("Dato","Ingrese descripcion del producto")
+
+        alert ("Descripcion",descripcion_producto)
         
         
-    
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

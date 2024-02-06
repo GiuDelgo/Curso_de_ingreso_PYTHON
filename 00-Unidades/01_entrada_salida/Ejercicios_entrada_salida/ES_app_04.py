@@ -33,8 +33,14 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
-        
+        nombre=prompt("Nombre","Ingrese su nombre")
+        #self.txt_nombre.delete(0,30) #se marca el inicio y el fin de la cantidad de caracteres a borrar 
+        #self.txt_nombre.delete(0,tkinter.END)
+        #self.txt_nombre.delete(0,len(self.txt_nombre.get())) el programa va del cero a la cantidad de caracteres que el usuario haya ingresadp
+
+        self.txt_nombre.delete(0,"end") #opcion nativa de python
+
+        self.txt_nombre.insert(0, nombre) #el cero marca la posicion desde donde se escribe el txt en el txt box
     
 if __name__ == "__main__":
     app = App()

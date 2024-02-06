@@ -34,7 +34,9 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        descripcion_producto = self.txt_nombre.get()
+        
+        alert ("Informacion", descripcion_producto)
                 
     
 if __name__ == "__main__":

@@ -42,8 +42,8 @@ class App(customtkinter.CTk):
 
     def btn_mostrar_on_click(self):
         
-        operador_a = float(self.txt_operador_a.get())
-        operador_b = float(self.txt_operador_b.get())
+        operador_a = int(self.txt_operador_a.get())
+        operador_b = int(self.txt_operador_b.get())
         
         resto = operador_a % operador_b
 

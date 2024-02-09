@@ -60,7 +60,9 @@ class App(customtkinter.CTk):
 
         suma = importe1 + importe2 + importe3
 
-        alert ("La suma de los productos es:", suma)
+        mensaje = f"La suma de los productos es: $ {suma}"
+
+        alert ("Suma ", mensaje)
 
         self.txt_importe_1.delete(0,"end")
         self.txt_importe_2.delete(0,"end")
@@ -74,7 +76,9 @@ class App(customtkinter.CTk):
 
         promedio = (importe1 + importe2 + importe3)/3
 
-        alert ("El promedio de los producto es:", promedio)
+        mensaje = f"El promedio de los producto es: $ {promedio}"
+
+        alert ("Promedio" , mensaje)
 
         self.txt_importe_1.delete(0,"end")
         self.txt_importe_2.delete(0,"end")
@@ -88,7 +92,9 @@ class App(customtkinter.CTk):
 
         precio_iva = (importe1 + importe2 + importe3)*1.21
 
-        alert ("El final con iva de los prodcutos es :", precio_iva)
+        mensaje = f"El precio final con iva de los prodcutos es: $ {precio_iva}"
+
+        alert ("Precio final + iva ", mensaje)
 
         self.txt_importe_1.delete(0,"end")
         self.txt_importe_2.delete(0,"end")

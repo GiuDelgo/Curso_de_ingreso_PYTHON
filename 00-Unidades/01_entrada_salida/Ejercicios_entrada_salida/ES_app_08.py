@@ -5,8 +5,9 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Giuliana
+apellido: Delgobbo
+tutor: Alejandro
 ---
 Ejercicio: entrada_salida_08
 ---
@@ -40,9 +41,18 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
         
+        operador_a = float(self.txt_operador_a.get())
+        operador_b = float(self.txt_operador_b.get())
         
+        resto = operador_a % operador_b
+
+        mensaje = f"El resto de dividir {operador_a} por {operador_b} es: {resto}"
+
+        alert ("Resto", mensaje)
+
+        self.txt_operador_a.delete(0,"end")
+        self.txt_operador_b.delete(0,"end")
     
 if __name__ == "__main__":
     app = App()

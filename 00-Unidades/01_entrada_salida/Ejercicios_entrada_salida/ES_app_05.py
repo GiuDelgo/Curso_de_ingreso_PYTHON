@@ -44,7 +44,11 @@ class App(customtkinter.CTk):
         nombre = self.txt_nombre.get()
         edad = self.txt_edad.get()
 
-        alert("Verifique los datos ingresados","Usted se llama "+ nombre +" y su edad es "+ edad +" años")
+        mensaje = "Usted se llama {0} y su {1} es años".format(nombre,edad)
+
+        alert ("Saludo", mensaje )
+
+        # alert("Verifique los datos ingresados","Usted se llama "+ nombre +" y su edad es "+ edad +" años")
 
         
     

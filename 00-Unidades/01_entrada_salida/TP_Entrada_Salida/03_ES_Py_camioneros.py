@@ -55,12 +55,18 @@ class App(customtkinter.CTk):
 
         kilos = toneladas * 1000 #De tonelada a kg
 
-        cant_camiones = (kilos + 3500 - 1) / 3500 #Calculo cant de camiones necesarios. Solo funciona para valores enteros. En otro tipo de problema deberia usar if. 
+        #cant_camiones = (kilos + 3500 - 1) / 3500 #Calculo cant de camiones necesarios. Solo funciona para valores enteros. En otro tipo de problema deberia usar if. 
                                              #Pero vamos a suponer valores enteros en kg, dado que 0,1 kg = 100g despreciables para valores en toneladas. 
         
-        cant_camiones = int(cant_camiones) #Paso el valor de cantidad de camiones a nro enteros. X ej si ingreso 7 toneladas (700kg) el resultado de la ecuacion anterior es 2.99. 
+        #cant_camiones = int(cant_camiones) #Paso el valor de cantidad de camiones a nro enteros. X ej si ingreso 7 toneladas (700kg) el resultado de la ecuacion anterior es 2.99. 
                                  #Pasando la rta a entero es que funciona la ecuacion anterior, ya que el programa redondea para abajo, dando como resultado 2.
                                  #Si el valor ingresado es 7.1 (7100 kg) el resultado de la ecuacion es 3, y asi...
+        
+        cant_camiones = kilos/3500
+
+        import math
+
+        cant_camiones = math.ceil(cant_camiones)
         
         mensaje = f"La cantidad de camiones necesarios es {cant_camiones}"
 

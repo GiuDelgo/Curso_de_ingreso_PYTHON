@@ -44,8 +44,8 @@ class App(customtkinter.CTk):
             mensaje = f"Promoción directa, la nota es {nota}"
 
         alert ("Nota", mensaje)
-  
             
+
 
 if __name__ == "__main__":
     app = App()

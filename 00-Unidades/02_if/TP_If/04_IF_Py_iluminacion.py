@@ -48,27 +48,28 @@ class App(customtkinter.CTk):
 
         if cantidad >= 6:
             precio = (cantidad*800)*0.5
-        elif cantidad == 5 and marca == "ArgentinaLuz":
-            precio = (5*800)*0.6
-        elif cantidad == 5: 
-            precio = (5*800)*0.7
-        elif cantidad == 4 and marca == "ArgentinaLuz":
-            precio = (4*800)*0.75
-        elif cantidad == 4 and marca == "FelipeLamparas":
-            precio = (4*800)*0.75
-        elif cantidad == 4:
-            precio = (4*800)*0.8
-        elif cantidad == 3 and marca == "ArgentinaLuz":
-            precio = (3*800)*0.85
-        elif cantidad == 4 and marca == "FelipeLamparas":
-            precio = (3*800)*0.9
-        else: 
-            precio = (3*800)*0.95
+        elif cantidad == 5:
+            if  marca == "ArgentinaLuz":
+                precio = (5*800)*0.6
+            else: 
+                precio = (5*800)*0.7
+        elif cantidad == 4 : 
+            if marca == "FelipeLamparas" or marca == "ArgentinaLuz":
+                precio = (4*800)*0.75
+            else:
+                precio = (4*800)*0.8
+        elif cantidad == 3: 
+            if marca == "ArgentinaLuz":
+                precio = (3*800)*0.85
+            elif marca == "FelipeLamparas":
+                    precio = (3*800)*0.9
+            else: 
+                    precio = (3*800)*0.95
 
         if precio >= 4000: 
-           precio = precio*0.95
+            precio = precio*0.95
 
-        mensaje = f"El total s abonar es {precio}"
+        mensaje = f"El total a abonar es {precio}"
 
         alert ("Precio",mensaje)
 

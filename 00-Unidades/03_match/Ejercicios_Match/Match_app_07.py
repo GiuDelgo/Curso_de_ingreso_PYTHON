@@ -6,8 +6,8 @@ import customtkinter
 
 
 '''
-nombre:
-apellido:
+nombre: Giuliana
+apellido: Delgobbo
 ---
 Ejercicio: Match_07
 ---
@@ -34,7 +34,23 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
+
+        punto_cardinal = ""
+        
+        destino = self.combobox_destino.get()
+        
+        match destino:
+            case "Bariloche":
+                punto_cardinal = "Sur"
+            case "Mar del plata":
+                punto_cardinal = "Este"
+            case "Cataratas":
+                punto_cardinal = "Norte"
+            case "Ushuaia":
+                punto_cardinal = "Oste"
+
+        alert ("Punto Cardinal", punto_cardinal)
+        
     
     
 if __name__ == "__main__":

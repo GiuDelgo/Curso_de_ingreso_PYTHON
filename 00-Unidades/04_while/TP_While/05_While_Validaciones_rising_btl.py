@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Giuliana
+apellido: Delgobbo 
 ---
 TP: While_validaciones_rising_btl
 ---
@@ -55,7 +55,69 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
+        
+        apellido = ""
+        edad = 0
+        estado_civil = ""
+        bandera_estado_civil = ""
+        legajo = 0
+        bandera_legajo = ""
+
+        while True: 
+            self.txt_apellido.delete(0,"end")
+            self.txt_edad.delete(0,"end")
+            #self.combobox_tipo.delete(0,"end")
+            self.txt_legajo.delete(0,"end")
+
+            #APELLIDO
+            apellido = prompt("Apellido", "Ingresar apellido")
+
+            #while apellido != str:
+                #apellido = prompt("Apellido", "Volver a ingresar apellido")
+            
+            #EDAD
+            edad = prompt("Edad", "Ingresar edad")
+            edad = int(edad)
+
+            while edad <18 or edad>90:
+                edad = prompt("Edad", "Volver a ingreasar edad")
+                edad = int(edad)
+
+            #ESTADO CIVIL
+            estado_civil = prompt("Estado Civil", "Ingresar estado civil")
+
+            match (estado_civil):
+                case "Soltero/a"|"Casado/a"|"Divorciado/a"|"Viudo/a":
+                    bandera_estado_civil = "ok"
+
+            while bandera_estado_civil != "ok":
+                estado_civil = prompt("Estado Civil", "Volver a ingresar estado civil")
+                match (estado_civil):
+                    case "Soltero/a"|"Casado/a"|"Divorciado/a"|"Viudo/a":
+                        bandera_estado_civil = "ok"
+
+            #NUMERO DE LEGAJO
+            legajo = prompt("Numero de Legajo", "Ingresar numero de legajo")
+
+            legajo = int(legajo)
+
+            if legajo >1000 and legajo <10000:
+                bandera_legajo = "ok"
+
+            while bandera_legajo != "ok":
+                legajo = prompt("Numero de Legajo", "Volver a ingresar numero de legajo")
+                legajo = int(legajo)
+                if legajo >1000 and legajo <10000:
+                    bandera_legajo = "ok"
+            
+            break
+
+        self.txt_apellido.insert(0,apellido)
+        self.txt_edad.insert(0,edad)
+        self.combobox_tipo.insert(0,estado_civil)
+        self.txt_legajo.insert(0,legajo)
+
+
 
 
 if __name__ == "__main__":

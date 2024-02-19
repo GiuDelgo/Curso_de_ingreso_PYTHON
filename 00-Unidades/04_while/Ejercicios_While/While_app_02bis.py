@@ -34,9 +34,8 @@ class App(customtkinter.CTk):
         suma = 0
 
         while contador_par <10:
-            if (contador_par % 2) == 0:
-                contador_par +=2
-                suma = suma + contador_par
+            contador_par +=2
+            suma = suma + contador_par
         
         alert ("Suma Pares",suma)
             

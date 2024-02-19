@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Giuliana
+apellido: Delgobbo
 ---
 TP: Iluminación
 ---
@@ -43,7 +43,53 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        PRECIO_X_LAMPARA = 800
+        descuento = 0
+        precio_sin_desc = 0
+        precio_con_desc = 0
+        descuento_adicional = 0
+        
+        marca = self.combobox_marca.get()
+        cantidad_lamparas = int(self.combobox_cantidad.get())
+
+        match (cantidad_lamparas):
+            case 5:
+                match (marca):
+                    case "ArgentinaLuz":
+                        descuento = 40
+                    case _:
+                        descuento = 30
+            case 4:
+                match (marca):
+                    case "FelipeLamparas"|"ArgentinaLuz":
+                        descuento = 25
+                    case _:
+                        descuento = 20
+            case 3:
+                match (marca):
+                    case "ArgentinaLuz":
+                        descuento = 15
+                    case "FelipeLamparas":
+                        descuento = 10
+                    case _:
+                        descuento = 5
+            case 1|2:
+                descuento = 0
+            case _:
+                descuento = 50
+
+        precio_sin_desc = (cantidad_lamparas*PRECIO_X_LAMPARA) 
+        precio_con_desc= precio_sin_desc - (precio_sin_desc*(descuento/100))
+
+        mensaje = f"El total a abonar es {precio_con_desc} con un descuento del {descuento}% aplicado."
+
+        if precio_con_desc > 4000:
+                descuento_adicional = 5
+                precio_con_desc = precio_con_desc - (precio_con_desc*(descuento_adicional/100))
+                mensaje = f"El total a abonar es {precio_con_desc} con un descuento del {descuento}% aplicado.\n ***DESCUENTO ADICIONAL DEL {descuento_adicional}% APLICADO***"
+
+
+        alert ("Precio",mensaje)
         
     
 if __name__ == "__main__":

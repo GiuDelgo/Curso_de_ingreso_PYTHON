@@ -6,8 +6,8 @@ import customtkinter
 
 
 '''
-nombre:
-apellido:
+nombre: Giuliana
+apellido: Delgobbo
 ---
 Ejercicio: Match_09
 ---
@@ -57,9 +57,57 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
-            
-    
+        
+        PRECIO_BASE = 15000
+        indice_incremento_decremento = 0
+        precio_final = 0
+        porcentaje = 0
+        mensaje = ""
+
+        estaciones = self.combobox_estaciones.get()
+        destino = self.combobox_destino.get()
+
+        match (estaciones):
+            case "Invierno":
+                match (destino):
+                    case "Bariloche":
+                        indice_incremento_decremento = 1.2
+                    case "Cataratas"|"Cordoba":
+                        indice_incremento_decremento = 0.9
+                    case "Mar del plata":
+                        indice_incremento_decremento = 0.8
+            case "Verano":
+                match (destino):
+                    case "Bariloche":
+                        indice_incremento_decremento = 0.8
+                    case "Cataratas"|"Cordoba":
+                        indice_incremento_decremento = 1.1
+                    case "Mar del plata":
+                        indice_incremento_decremento = 1.2
+            case "Otoño"|"Primavera":
+                match (destino):
+                    case "Mar del plata":
+                        indice_incremento_decremento = 1.1
+                    case "Cataratas":
+                        indice_incremento_decremento = 1.1
+                    case "Bariloche":
+                        indice_incremento_decremento = 1.1
+                    case "Cordoba":
+                        indice_incremento_decremento = 1
+        
+        precio_final = PRECIO_BASE*indice_incremento_decremento
+        
+        if precio_final>PRECIO_BASE:
+            porcentaje = ((precio_final*100)/PRECIO_BASE)-100
+            mensaje = f"El precio final es de {precio_final} con un incremento del {porcentaje}%"
+        elif precio_final<PRECIO_BASE:
+            porcentaje = 100 - ((precio_final*100)/PRECIO_BASE)
+            mensaje = f"El precio final es de {precio_final} con un descuento del {porcentaje}%"
+        else: 
+            mensaje = f"El precio final es de {precio_final} sin descuento ni aumento"
+
+        alert ("Precio final", mensaje)
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

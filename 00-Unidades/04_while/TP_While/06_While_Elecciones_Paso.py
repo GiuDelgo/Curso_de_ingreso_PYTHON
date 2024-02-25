@@ -52,62 +52,51 @@ class App(customtkinter.CTk):
 
         suma_votos = 0
 
-        alert("Ingreso datos","Ingresar los datos de los candidatos.\nPara salir de la carga presionar CANCELAR en cualquier ventana")
+        cantidad_candidatos = prompt("Candidatos", "Ingresar la cantidad de candidatos")
 
-        while True: 
-            #NOMBRE
-            nombre = prompt("Nombre", "Ingresar el nombre del candidato")
+        while  cantidad_candidatos == None or cantidad_candidatos.isalpha() or int(cantidad_candidatos) == 0:
+            cantidad_candidatos = prompt("Candidatos", "Volver a ingresar la cantidad de candidatos")
 
-                #VALIDACION/CANCELACION
-            if nombre == None:
-                break    
+        cantidad_candidatos = int(cantidad_candidatos)
+
+        while contador < cantidad_candidatos: 
+            #NOMBRE 
+            nombre = prompt("Nombre", "Ingresar nombre del candidato")
+
+            while nombre == None or not nombre.isalpha:
+                nombre = prompt("Nombre", "Ingresar nombre del candidato")
 
             #EDAD
-                #VALIDACION/CANCELACION
             edad = prompt("Edad", "Ingresar la edad del candidato")
-            if edad == None:
-                break
-
+            
+            while int(edad) <25:
+                edad = prompt("Edad", "Volver a ingreasar edad del candidato")
+            
             edad = int(edad)
 
-            while edad < 25:
-                edad = prompt("Edad Invalida", "Volver a ingresar la edad del candidato")
-                edad = int(edad)
-
             #CANTIDAD DE VOTOS
-                #VALIDACION/CANCELACION
             cantidad_votos = prompt("Votos", "Ingresar la cantidad de votos del candidato")
-            if cantidad_votos == None:
-                break
-            
+
+            while int(cantidad_votos) == 0:
+                cantidad_votos = prompt("Cantidad Invalida", "Volver a ingresar la cantidad de votos")
+
             cantidad_votos = int(cantidad_votos)
 
-            while cantidad_votos < 0:
-                cantidad_votos = prompt("Cantidad Invalida", "Volver a ingresar la cantidad de votos")
-                cantidad_votos = int(cantidad_votos)
-                
-                #MAXIMOS/MINIMOS
-            if  contador == 0:
+            #MAXIMOS/MINIMOS
+            if contador == 0 or cantidad_votos<min_votos:
                 min_votos = cantidad_votos
                 min_votos_nombre = nombre
+                min_votos_edad = edad  
 
+            if contador == 0 or cantidad_votos>max_votos:
                 max_votos = cantidad_votos
-                max_votos_nombre = nombre
+                max_votos_nombre = nombre  
 
-            if cantidad_votos > max_votos:
-                max_votos = cantidad_votos
-                max_votos_nombre = nombre
-
-            if cantidad_votos < min_votos:
-                min_votos = cantidad_votos
-                min_votos_nombre = nombre
-                min_votos_edad = edad
-
-            suma_edades = edad + suma_edades
-            suma_votos = cantidad_votos + suma_votos
+            suma_edades += edad
+            suma_votos += cantidad_votos
 
             contador += 1
-
+        
         promedio_edades = suma_edades/contador
 
         mensaje = f"- Candidato con más votos: {max_votos_nombre} con {max_votos} votos.\n- Candidato con menos votos: {min_votos_nombre} de {min_votos_edad} años, con {min_votos} votos.\n- Promedio de edades de candidatos: {promedio_edades} años.\n- Total de votos emitidos: {suma_votos} votos."

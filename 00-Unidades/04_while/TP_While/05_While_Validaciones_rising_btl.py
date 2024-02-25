@@ -41,9 +41,9 @@ class App(customtkinter.CTk):
 
         self.label2 = customtkinter.CTkLabel(master=self, text="Estado")
         self.label2.grid(row=2, column=0, padx=20, pady=10)
-        self.combobox_tipo = customtkinter.CTkComboBox(
-            master=self, values=["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"])
-        self.combobox_tipo.grid(row=2, column=1, padx=20, pady=10)
+        self.txt_tipo = customtkinter.CTkEntry(master=self) 
+        self.txt_tipo.grid(row=2, column=1, padx=20, pady=10)
+
 
         self.label3 = customtkinter.CTkLabel(master=self, text="Legajo")
         self.label3.grid(row=3, column=0, padx=20, pady=10)
@@ -59,65 +59,45 @@ class App(customtkinter.CTk):
         apellido = ""
         edad = 0
         estado_civil = ""
-        bandera_estado_civil = ""
         legajo = 0
-        bandera_legajo = ""
+        
+        self.txt_apellido.delete(0,"end")
+        self.txt_edad.delete(0,"end")
+        self.txt_tipo.delete(0,"end")
+        self.txt_legajo.delete(0,"end")
 
-        while True: 
-            self.txt_apellido.delete(0,"end")
-            self.txt_edad.delete(0,"end")
-            #self.combobox_tipo.delete(0,"end")
-            self.txt_legajo.delete(0,"end")
+        #APELLIDO
+        apellido = prompt("Apellido", "Ingresar apellido")
+        while apellido == None or apellido == "" or not apellido.isalpha(): 
+            apellido = prompt("Apellido", "Volver a ingresar apellido")
+        
+        #EDAD
+        edad = prompt("Edad", "Ingresar edad")
 
-            #APELLIDO
-            apellido = prompt("Apellido", "Ingresar apellido")
+        while edad == None or edad == "" or (int (edad) <18 or int(edad)>90):
+            edad = prompt("Edad", "Volver a ingreasar edad")
 
-            #while apellido != str:
-                #apellido = prompt("Apellido", "Volver a ingresar apellido")
-            
-            #EDAD
-            edad = prompt("Edad", "Ingresar edad")
-            edad = int(edad)
+        edad = int(edad)
 
-            while edad <18 or edad>90:
-                edad = prompt("Edad", "Volver a ingreasar edad")
-                edad = int(edad)
+        #ESTADO CIVIL
+        estado_civil = prompt("Estado Civil", "Ingresar estado civil")
 
-            #ESTADO CIVIL
-            estado_civil = prompt("Estado Civil", "Ingresar estado civil")
+        while estado_civil == None or estado_civil == "" or (estado_civil != "Soltero" and estado_civil != "Soltera"and estado_civil != "Casado" and estado_civil != "Casada" and estado_civil != "Divorciado" and estado_civil != "Divorciada" and estado_civil != "Viudo" and estado_civil != "Viuda"):
+            estado_civil = prompt("Estado Civil", "Volver a ingresar estado civil")
 
-            match (estado_civil):
-                case "Soltero/a"|"Casado/a"|"Divorciado/a"|"Viudo/a":
-                    bandera_estado_civil = "ok"
+        #NUMERO DE LEGAJO
+        legajo = prompt("Numero de Legajo", "Ingresar numero de legajo")
 
-            while bandera_estado_civil != "ok":
-                estado_civil = prompt("Estado Civil", "Volver a ingresar estado civil")
-                match (estado_civil):
-                    case "Soltero/a"|"Casado/a"|"Divorciado/a"|"Viudo/a":
-                        bandera_estado_civil = "ok"
+        while legajo == None or legajo == "" or int(legajo) <1000 or int(legajo) >10000:
+            legajo = prompt("Numero de Legajo", "Volver a ingresar numero de legajo")
 
-            #NUMERO DE LEGAJO
-            legajo = prompt("Numero de Legajo", "Ingresar numero de legajo")
-
-            legajo = int(legajo)
-
-            if legajo >1000 and legajo <10000:
-                bandera_legajo = "ok"
-
-            while bandera_legajo != "ok":
-                legajo = prompt("Numero de Legajo", "Volver a ingresar numero de legajo")
-                legajo = int(legajo)
-                if legajo >1000 and legajo <10000:
-                    bandera_legajo = "ok"
-            
-            break
+        legajo = int(legajo)
+        
 
         self.txt_apellido.insert(0,apellido)
         self.txt_edad.insert(0,edad)
-        self.combobox_tipo.insert(0,estado_civil)
+        self.txt_tipo.insert(0,estado_civil)
         self.txt_legajo.insert(0,legajo)
-
-
 
 
 if __name__ == "__main__":

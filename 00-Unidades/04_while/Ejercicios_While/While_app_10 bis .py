@@ -20,6 +20,9 @@ Luego calcular:
     D. Cantidad de números negativos ingresados
     E. Cantidad de ceros
     F. Diferencia entre la cantidad de los números positivos ingresados y los negativos
+    bis
+    G. El máximo valor. 
+    H. El mínimo valor (incluyendo en que iteracion se encontro, solo la primera)
 
 Informar los resultados mediante alert()
 
@@ -46,6 +49,12 @@ class App(customtkinter.CTk):
         contador_ceros = 0 
         diferencia_positivos_negativos = 0 
         mensaje = ""
+        
+        contador = 0
+        numero_max = 0
+        numero_min = 0
+        iteracion_min = 0
+        bandera_min = True
 
         while True:
 
@@ -57,6 +66,8 @@ class App(customtkinter.CTk):
             while numero == "":
                 numero = prompt ("Numero", "Ingersar un numero válido")
 
+            contador += 1
+
             numero = int (numero)
 
             if numero < 0:
@@ -67,15 +78,24 @@ class App(customtkinter.CTk):
                 contador_positivos += 1
             else: 
                 contador_ceros += 1
+
+            if contador == 1 or numero>numero_max:
+                numero_max = numero
+            
+            if contador == 1 or numero<numero_min:
+                numero_min = numero
+                iteracion_min = contador
     
         diferencia_positivos_negativos = contador_positivos - contador_negativos
 
         if diferencia_positivos_negativos <0:
             diferencia_positivos_negativos *= -1
 
-        mensaje = f"- Suma acumulada de N° negativos: {suma_negativos}\n- Suma acumulada de N° positivos: {suma_positivos}\n- Cantidad N° positivos ingresados: {contador_positivos}\n- Cantidad N° negativos ingresados: {contador_negativos}\n- Cantidad de ceros: {contador_ceros}\n- Diferencia entre cantidad de N° positivos ingresados y N° negativos: {diferencia_positivos_negativos}"
+        mensaje = f"- Suma acumulada de N° negativos: {suma_negativos}\n- Suma acumulada de N° positivos: {suma_positivos}\n- Cantidad N° positivos ingresados: {contador_positivos}\n- Cantidad N° negativos ingresados: {contador_negativos}\n- Cantidad de ceros: {contador_ceros}\n- Diferencia entre cantidad de N° positivos ingresados y N° negativos: {diferencia_positivos_negativos}\n- Numero máximo: {numero_max}\n- Numero mínimo: {numero_min}, ingresado en la iteración {iteracion_min}"
             
         alert ("Resultados", mensaje)
+        print(contador)
+        print(iteracion_min)
 
 if __name__ == "__main__":
     app = App()

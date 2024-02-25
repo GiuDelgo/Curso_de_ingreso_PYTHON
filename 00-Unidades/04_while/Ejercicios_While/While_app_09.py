@@ -41,9 +41,9 @@ class App(customtkinter.CTk):
 
     def btn_comenzar_ingreso_on_click(self):
         numero = 0
-        contador = 0 
         maximo = 0
         minimo = 0 
+        bandera = True 
 
         self.txt_maximo.delete (0,"end")
         self.txt_minimo.delete (0,"end")
@@ -55,19 +55,14 @@ class App(customtkinter.CTk):
                 break
 
             numero = int (numero)
-
-            while contador == 0:
-                minimo = numero
-                maximo = numero
-                contador = 1
-
-            if numero > maximo:
-                maximo = numero
-
-            if numero < minimo:
+            
+            if bandera or numero<minimo:
                 minimo = numero
 
-        
+            if bandera or numero>maximo:
+                maximo = numero
+                bandera = False
+
         self.txt_maximo.insert (0,maximo)
         self.txt_minimo.insert (0,minimo)
 

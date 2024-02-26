@@ -5,13 +5,14 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Giuliana
+apellido: Delgobbo
 ---
 Ejercicio: for_03
 ---
 Enunciado:
-Al presionar el botón 'Mostrar' tomar el valor de la caja de texto (txt_repetir) y mostrar el mensaje "Hola UTN FRA" la cantidad de veces que el usuario ingreso (utilizando el Dialog Alert)
+Al presionar el botón 'Mostrar' tomar el valor de la caja de texto (txt_repetir) 
+y mostrar el mensaje "Hola UTN FRA" la cantidad de veces que el usuario ingreso (utilizando el Dialog Alert)
 '''
 
 class App(customtkinter.CTk):
@@ -32,10 +33,15 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        repetir = 0
+
+        repetir = self.txt_repetir.get()
+        repetir = int(repetir)
+
+        for i in range (repetir):
+            alert("Mensaje","Hola UTN FRA")
 
         
-    
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
